@@ -2,3 +2,4 @@ build
 dist
 ordenar.bat
 __pycache__
+.idea
