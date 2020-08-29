@@ -1,5 +1,5 @@
 #dw-manager
 
-author: Cother
+author: CotherArt
 
 Program to sort files in diferent folders
