@@ -1,4 +1,4 @@
-#file-manager
+# File-manager
 
 author: CotherArt
 
