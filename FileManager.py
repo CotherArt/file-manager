@@ -55,8 +55,8 @@ for f_name in listdir(main_dir):
         moverodir(f_name, pkgdir)
     if extension in images_formats:
         moverodir(f_name, imgdir)
-    if extension in exe_formats:
-        moverodir(f_name, exedir)
+    if extension in video_formats:
+        moverodir(f_name, viddir)
     if extension in office_formats:
         moverodir(f_name, offddir)
 
