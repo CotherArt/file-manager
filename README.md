@@ -26,7 +26,7 @@ Make an .exe file for Windows
 ## Python requeriments
 - Pyinstaller
 
-You need to have **pytinstaller** installed
+You need to have **pyinstaller** installed
 `pip install pyinstaller`
 
 To build the project, just run the following command:
