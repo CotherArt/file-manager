@@ -1,1 +1,1 @@
-pyinstaller --onefile .\FileManager.py .\fileformats.py
+pyinstaller --onefile .\FileManager.py .\config.txt
