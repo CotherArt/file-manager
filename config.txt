@@ -1,0 +1,2 @@
+Imagenes: png, jpg, jpeg, bmp, gif, ppm, pgm, svg
+Videos: vid, mp4, mov

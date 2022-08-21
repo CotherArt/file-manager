@@ -6,9 +6,9 @@ from os import mkdir, path, listdir
 from os import getcwd
 from pathlib import Path
 from shutil import move
-from fileformats import *
 
 main_dir = getcwd()
+formats = {}
 
 # Move a file to an specific directory
 def moverodir(f_name, backupdir):
@@ -20,7 +20,8 @@ def moverodir(f_name, backupdir):
     move(archivo, backupdir)
     print('{} movido'.format(f_name))
 
-def print_title():
+# --------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
     print('''
 ███████╗██╗██╗     ███████╗    ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗ 
 ██╔════╝██║██║     ██╔════╝    ████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
@@ -33,22 +34,19 @@ def print_title():
     
     ''')
 
-# --------------------------------------------------------------------------------------------------------
-if __name__ == '__main__':
-    print_title()
     # Ask for the folder to manage
     print("Which folder do you want to sort? type the route or press Enter to use the current directory.")
     path_to_manage = input('>')
     if len(path_to_manage) != 0:
         main_dir = path_to_manage
-
     print('Scanning files at -->[{}]'.format(main_dir))
 
+    # Display and count the number or files at the main directory
     files_count = 0
     for f_name in listdir(main_dir):
         print(f_name)
         files_count += 1
-
+    
     yesno = ''
     while yesno not in ['y','yes','n','no']:
         print('\n{} files to move. Do you want to continue? (y/n).'.format(files_count))
@@ -57,26 +55,32 @@ if __name__ == '__main__':
         # Continue or aabort the sorting
         if yesno in ['n','no']:
             exit()
+
+    # Remove spaces from a given string
+    def clean_spaces(string_input): 
+        return string_input.replace(" ", "") 
+
+    # parse the settings on the config.txt file
+    with open('config.txt') as f:
+        while True:
+            line = f.readline()
+            if not line:
+                break
+            # Get rid of the enter char (\n)
+            line = line.strip()
+            line = clean_spaces(line)
+
+            lista = line.split(':')
+            lista2 = lista[1].split(',')
+            formats[lista[0]] = lista2
     
+    # Get the file names from the main_dir
     for f_name in listdir(main_dir):
         # Obtain the extension of the file
         extension = f_name.split('.')[-1]
-        
-        if extension in text_formats:
-            moverodir(f_name, '/Textos/')
-            
-        if extension in exe_formats:
-            moverodir(f_name, '/Ejecutables/')
-            
-        if extension in package_formats:
-            moverodir(f_name, '/Paquetes/')
-            
-        if extension in images_formats:
-            moverodir(f_name, '/Imagenes/')
-            
-        if extension in video_formats:
-            moverodir(f_name, '/Videos/')
-            
-        if extension in office_formats:
-            moverodir(f_name, '/Office/')
+    
+    # Move the files that matches with the config.txt file to their respective folder
+    for f in formats:
+        if extension in formats[f]:
+            print('move {} to dir:{} '.format(f_name, f))
 
