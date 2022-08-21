@@ -29,47 +29,55 @@ ___________.__ .__                  _____                              ____
      \/                   \/             \/      \/      \/      \/               \/                                                                                         
     ''')
 
-print_title()
 
-# Ask for the folder to manage
-print("Wich forlder do you want to sort? type the route or press Enter to use the current directory.")
-path_to_manage = input('>')
-if len(path_to_manage) != 0:
-    main_dir = path_to_manage
 
-txtdir = Path(main_dir + '/Textos/')
-exedir = Path(main_dir + '/Ejecutables/')
-imgdir = Path(main_dir + '/Imagenes/')
-pkgdir = Path(main_dir + '/Paquetes/')
-viddir = Path(main_dir + '/Videos/')
-offddir = Path(main_dir + '/Office/')
+# --------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
 
-files_count = 0
-for f_name in listdir(main_dir):
-    print(f_name)
-    files_count += 1
+    print_title()
+    # Ask for the folder to manage
+    print("Wich forlder do you want to sort? type the route or press Enter to use the current directory.")
+    path_to_manage = input('>')
+    if len(path_to_manage) != 0:
+        main_dir = path_to_manage
 
-print('/n{} files to move. Do you want to continue? (y/n).'.format(files_count))
-yesno = input('>')
-# Continue or aabort the sorting
-if yesno.lower() in ['n','no']:
-    exit()
+    print('Scanning files at -->[{}]'.format(main_dir))
 
-for f_name in listdir(main_dir):
-    # Obtain the extension of the file
-    extension = f_name.split('.')[-1]
-    
-    if extension in text_formats:
-        moverodir(f_name, txtdir)
-    if extension in exe_formats:
-        moverodir(f_name, exedir)
-    if extension in package_formats:
-        moverodir(f_name, pkgdir)
-    if extension in images_formats:
-        moverodir(f_name, imgdir)
-    if extension in video_formats:
-        moverodir(f_name, viddir)
-    if extension in office_formats:
-        moverodir(f_name, offddir)
+    txtdir = Path(main_dir + '/Textos/')
+    exedir = Path(main_dir + '/Ejecutables/')
+    imgdir = Path(main_dir + '/Imagenes/')
+    pkgdir = Path(main_dir + '/Paquetes/')
+    viddir = Path(main_dir + '/Videos/')
+    offddir = Path(main_dir + '/Office/')
 
+    files_count = 0
+    for f_name in listdir(main_dir):
+        print(f_name)
+        files_count += 1
+
+    yesno = ''
+    while yesno not in ['y','yes','n','no']:
+        print('\n{} files to move. Do you want to continue? (y/n).'.format(files_count))
+        yesno = input('>')
+        yesno = yesno.lower()
+        # Continue or aabort the sorting
+        if yesno in ['n','no']:
+            exit()
+
+    for f_name in listdir(main_dir):
+        # Obtain the extension of the file
+        extension = f_name.split('.')[-1]
+        
+        if extension in text_formats:
+            moverodir(f_name, txtdir)
+        if extension in exe_formats:
+            moverodir(f_name, exedir)
+        if extension in package_formats:
+            moverodir(f_name, pkgdir)
+        if extension in images_formats:
+            moverodir(f_name, imgdir)
+        if extension in video_formats:
+            moverodir(f_name, viddir)
+        if extension in office_formats:
+            moverodir(f_name, offddir)
 
