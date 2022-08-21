@@ -10,16 +10,16 @@ Program to sort files in diferent folders
 # Download and execute
 
 ```
-    git clone https://github.com/CotherArt/file-manager.git
-    cd file-manager
-    python FileManager.py
+git clone https://github.com/CotherArt/file-manager.git
+cd file-manager
+python FileManager.py
 ```
 # Windows no python
 You can use the executable for Windows without deeding to install python
 ```
-    git clone https://github.com/CotherArt/file-manager.git
-    cd file-manager/dist
-    FileManager.exe
+git clone https://github.com/CotherArt/file-manager.git
+cd file-manager/dist
+FileManager.exe
 ```
 # Build project
 Make an .exe file for Windows
@@ -31,6 +31,6 @@ You need to have **pyinstaller** installed
 
 To build the project, just run the following command:
 ```
-    pyinstaller --onefile .\FileManager.py .\fileformats.py
+pyinstaller --onefile .\FileManager.py .\fileformats.py
 ```
 Or just run the `.\build.bat` file for Windows

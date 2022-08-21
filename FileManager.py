@@ -19,6 +19,18 @@ def moverodir(f_name, backupdir=main_dir):
     move(archivo, backupdir)
     print('{} movido'.format(f_name))
 
+def print_title():
+    print('''
+___________.__ .__                  _____                              ____                  
+\_   _____/|__||  |    ____        /     \  _____     ____  _____     / ___\   ____ _______  
+ |    __)  |  ||  |  _/ __ \      /  \ /  \ \__  \   /    \ \__  \   / /_/  >_/ __ \\_  __ \ 
+ |     \   |  ||  |__\  ___/     /    Y    \ / __ \_|   |  \ / __ \_ \___  / \  ___/ |  | \/ 
+ \___  /   |__||____/ \___  >    \____|__  /(____  /|___|  /(____  //_____/   \___  >|__|    
+     \/                   \/             \/      \/      \/      \/               \/                                                                                         
+    ''')
+
+print_title()
+
 # Ask for the folder to manage
 print("Wich forlder do you want to sort? type the route or press Enter to use the current directory.")
 path_to_manage = input('>')
