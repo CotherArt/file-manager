@@ -18,9 +18,10 @@ python FileManager.py
 You can use the executable for Windows without needing to install python
 ```
 git clone https://github.com/CotherArt/file-manager.git
-cd file-manager/dist
+cd file-manager/dist/FileManager/
 FileManager.exe
 ``` -->
+
 # Build project
 Make an .exe file for Windows
 ## Python requeriments
@@ -30,7 +31,13 @@ You need to have **pyinstaller** installed
 `pip install pyinstaller`
 
 To build the project, just run the following command:
+## Windows
 ```
-pyinstaller --onefile .\FileManager.py .\fileformats.py
+pyinstaller --add-data "config.txt;." .\FileManager.py
 ```
-Or just run the `.\build.bat` file for Windows
+## Linux
+```
+pyinstaller --add-data "config.txt:." .\FileManager.py
+```
+Or just run the `./build.bat` file for Windows or `./build.sh` for Linux
+Now you can run `./dist/FileManager/FileManager.exe`

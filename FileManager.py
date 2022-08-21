@@ -7,7 +7,7 @@ from os import getcwd
 from pathlib import Path
 from shutil import move
 
-main_dir = getcwd()
+main_dir = ''
 formats = {}
 
 # Move a file to an specific directory
@@ -35,11 +35,12 @@ if __name__ == '__main__':
     ''')
 
     # Ask for the folder to manage
-    print("Which folder do you want to sort? type the route or press Enter to use the current directory.")
-    path_to_manage = input('>')
-    if len(path_to_manage) != 0:
-        main_dir = path_to_manage
-    print('Scanning files at -->[{}]'.format(main_dir))
+    main_dir = ''
+    while len(main_dir) == 0:
+        print("Which folder do you want to sort?")
+        main_dir = input('>')
+        
+    print('\nScanning files at -->[{}]'.format(main_dir))
 
     # Display and count the number or files at the main directory
     files_count = 0

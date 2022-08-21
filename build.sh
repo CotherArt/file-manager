@@ -1,0 +1,1 @@
+pyinstaller --add-data "config.txt:." .\FileManager.py
