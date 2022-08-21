@@ -1,2 +1,6 @@
-Imagenes: png, jpg, jpeg, bmp, gif, ppm, pgm, svg
+Images: png, jpg, jpeg, bmp, gif, ppm, pgm, svg
 Videos: vid, mp4, mov
+Packages: zip, rar, jar
+Textos: txt, rtf, py, dll
+Office: pdf, docx, xlsx
+Ejecutables: exe, msi
