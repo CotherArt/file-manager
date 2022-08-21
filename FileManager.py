@@ -11,7 +11,8 @@ from fileformats import *
 main_dir = getcwd()
 
 # Move a file to an specific directory
-def moverodir(f_name, backupdir=main_dir):
+def moverodir(f_name, backupdir):
+    backupdir = main_dir + backupdir
     archivo = str(main_dir) + '\\' + f_name
     if not path.exists(backupdir):
         mkdir(backupdir)
@@ -27,6 +28,9 @@ def print_title():
 ██╔══╝  ██║██║     ██╔══╝      ██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
 ██║     ██║███████╗███████╗    ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
 ╚═╝     ╚═╝╚══════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+    By:CotherArt
+    https://github.com/CotherArt/file-manager.git
+    
     ''')
 
 # --------------------------------------------------------------------------------------------------------
@@ -39,13 +43,6 @@ if __name__ == '__main__':
         main_dir = path_to_manage
 
     print('Scanning files at -->[{}]'.format(main_dir))
-
-    txtdir = Path(main_dir + '/Textos/')
-    exedir = Path(main_dir + '/Ejecutables/')
-    imgdir = Path(main_dir + '/Imagenes/')
-    pkgdir = Path(main_dir + '/Paquetes/')
-    viddir = Path(main_dir + '/Videos/')
-    offddir = Path(main_dir + '/Office/')
 
     files_count = 0
     for f_name in listdir(main_dir):
@@ -60,21 +57,26 @@ if __name__ == '__main__':
         # Continue or aabort the sorting
         if yesno in ['n','no']:
             exit()
-
+    
     for f_name in listdir(main_dir):
         # Obtain the extension of the file
         extension = f_name.split('.')[-1]
         
         if extension in text_formats:
-            moverodir(f_name, txtdir)
+            moverodir(f_name, '/Textos/')
+            
         if extension in exe_formats:
-            moverodir(f_name, exedir)
+            moverodir(f_name, '/Ejecutables/')
+            
         if extension in package_formats:
-            moverodir(f_name, pkgdir)
+            moverodir(f_name, '/Paquetes/')
+            
         if extension in images_formats:
-            moverodir(f_name, imgdir)
+            moverodir(f_name, '/Imagenes/')
+            
         if extension in video_formats:
-            moverodir(f_name, viddir)
+            moverodir(f_name, '/Videos/')
+            
         if extension in office_formats:
-            moverodir(f_name, offddir)
+            moverodir(f_name, '/Office/')
 
