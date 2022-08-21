@@ -11,14 +11,14 @@ main_dir = getcwd()
 formats = {}
 
 # Move a file to an specific directory
-def moverodir(f_name, backupdir):
+def move_to_dir(f_name, backupdir):
     backupdir = main_dir + backupdir
     archivo = str(main_dir) + '\\' + f_name
     if not path.exists(backupdir):
         mkdir(backupdir)
         print('Directorio creado {}'.format(backupdir))
     move(archivo, backupdir)
-    print('{} movido'.format(f_name))
+    print('{} moved to {}'.format(f_name, backupdir))
 
 # --------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
             lista = line.split(':')
             lista2 = lista[1].split(',')
-            formats[lista[0]] = lista2
+            formats['\\'+lista[0]] = lista2
     
     # Get the file names from the main_dir
     for f_name in listdir(main_dir):
@@ -82,5 +82,5 @@ if __name__ == '__main__':
     # Move the files that matches with the config.txt file to their respective folder
     for f in formats:
         if extension in formats[f]:
-            print('move {} to dir:{} '.format(f_name, f))
+            move_to_dir(f_name, f)
 
