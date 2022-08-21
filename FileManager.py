@@ -79,9 +79,9 @@ if __name__ == '__main__':
     for f_name in listdir(main_dir):
         # Obtain the extension of the file
         extension = f_name.split('.')[-1]
-    
-    # Move the files that matches with the config.txt file to their respective folder
-    for f in formats:
-        if extension in formats[f]:
-            move_to_dir(f_name, f)
+        
+        # Move the files that matches with the config.txt file to their respective folder
+        for f in formats:
+            if extension in formats[f]:
+                move_to_dir(f_name, f)
 
