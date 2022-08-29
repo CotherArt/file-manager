@@ -6,6 +6,8 @@ from os import mkdir, path, listdir
 from os import getcwd
 from pathlib import Path
 from shutil import move
+from colorama import init, Fore, Back, Style
+init() # init for colorama
 
 main_dir = ''
 formats = {}
@@ -16,41 +18,45 @@ def move_to_dir(f_name, backupdir):
     archivo = str(main_dir) + '\\' + f_name
     if not path.exists(backupdir):
         mkdir(backupdir)
-        print('Directorio creado {}'.format(backupdir))
+        print(Fore.YELLOW + 'Directory created {}'.format(backupdir) + Fore.RESET)
     move(archivo, backupdir)
-    print('{} moved to {}'.format(f_name, backupdir))
+    print(Fore.CYAN + f_name + Fore.YELLOW + ' moved to -> ' + backupdir + Fore.RESET)
 
 # --------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    print('''
+    print(Fore.YELLOW + '''
 ███████╗██╗██╗     ███████╗    ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗ 
 ██╔════╝██║██║     ██╔════╝    ████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
 █████╗  ██║██║     █████╗      ██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝
 ██╔══╝  ██║██║     ██╔══╝      ██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
 ██║     ██║███████╗███████╗    ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
-╚═╝     ╚═╝╚══════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-    By:CotherArt
-    https://github.com/CotherArt/file-manager.git
+╚═╝     ╚═╝╚══════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝''')
+    # print(Fore.CYAN)
+    print(Fore.CYAN + '\tBy:CotherArt')
+    print('\thttps://github.com/CotherArt/file-manager.git')
+    print(Fore.RESET)
     
-    ''')
-
     # Ask for the folder to manage
     main_dir = ''
     while len(main_dir) == 0:
-        print("Which folder do you want to sort?")
+        print(Fore.GREEN + "Which folder do you want to sort?" + Fore.RESET)
         main_dir = input('>')
         
-    print('\nScanning files at -->[{}]'.format(main_dir))
+    print(Fore.YELLOW + '\nScanning files at -->[{}]\n'.format(main_dir) + Fore.RESET)
 
     # Display and count the number or files at the main directory
     files_count = 0
     for f_name in listdir(main_dir):
-        print(f_name)
-        files_count += 1
+        # Print files and directories in diferent colors
+        if '.' in f_name:
+            print(Fore.CYAN + f_name + Fore.RESET)
+            files_count += 1
+        else:
+            print(f_name + Fore.RESET)
     
     yesno = ''
     while yesno not in ['y','yes','n','no']:
-        print('\n{} files to move. Do you want to continue? (y/n).'.format(files_count))
+        print(Fore.YELLOW + '\n{}'.format(files_count) +Fore.GREEN+' files to move. Do you want to continue? (y/n).' + Fore.RESET)
         yesno = input('>')
         yesno = yesno.lower()
         # Continue or aabort the sorting
@@ -75,6 +81,7 @@ if __name__ == '__main__':
             lista2 = lista[1].split(',')
             formats['\\'+lista[0]] = lista2
     
+    print('\n----------------------------------------------------------\n')
     # Get the file names from the main_dir
     for f_name in listdir(main_dir):
         # Obtain the extension of the file
